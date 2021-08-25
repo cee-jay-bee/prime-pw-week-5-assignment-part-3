@@ -17,3 +17,16 @@ const addToCollection = (title, artist, yearPublished) => {
     return newObject;
 }
 
+// Test the addToCollection function:
+
+// Add 6 albums to your collection. Aim to have a mix of both same and different artists and published years. (Feel free to share your musical interests, or make stuff up. Totally fine either way.)
+// Console.log each album as added using the returned value.
+console.log(addToCollection('24K Magic', 'Bruno Mars', '2016'));
+console.log(addToCollection('Unorthodox Jukebox', 'Bruno Mars', '2012'));
+console.log(addToCollection('Doo-Wops & Hooligans', 'Bruno Mars', '2010'));
+console.log(addToCollection('Here\'s to the Good Times', 'Florida-Georgia Line', '2012' ));
+console.log(addToCollection('Anything Goes', 'Florida-Georgia Line', '2014'));
+console.log(addToCollection('Dig Your Roots', 'Florida-Georgia Line', '2016'));
+
+// After all are added, console.log the collection array.
+console.log(collection);

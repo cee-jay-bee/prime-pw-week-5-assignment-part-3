@@ -19,7 +19,8 @@ const addToCollection = (title, artist, yearPublished) => {
 
 // Test the addToCollection function:
 
-// Add 6 albums to your collection. Aim to have a mix of both same and different artists and published years. (Feel free to share your musical interests, or make stuff up. Totally fine either way.)
+// Add 6 albums to your collection. Aim to have a mix of both same and different artists and published years. 
+// (Feel free to share your musical interests, or make stuff up. Totally fine either way.)
 // Console.log each album as added using the returned value.
 console.log(addToCollection('24K Magic', 'Bruno Mars', '2016'));
 console.log(addToCollection('Unorthodox Jukebox', 'Bruno Mars', '2012'));
@@ -59,3 +60,8 @@ const findByArtist = artist => {
     return resultArray;
     
 }
+// Test the findByArtist function. Make sure to test with an artist you know is in the collection, 
+//as well as an artist you know is not in your collection. Check that for artists with multiple matches, all are found.
+
+console.log(findByArtist('Bruno Mars'));
+console.log(findByArtist('Charlie Daniels Band'));

@@ -43,3 +43,19 @@ const showCollection = array => {
 }
 // Test the showCollection function.
 showCollection(collection);
+
+// Add a function named findByArtist. This function should:
+// Take in artist (a string) parameter
+const findByArtist = artist => {
+    // Create an array to hold any results, empty to start
+    let resultArray = [];
+    // Loop through the collection and add any objects with a matching artist to the array.
+    for (let i = 0; i < collection.length; i++){
+        if (collection[i].artist === artist){
+            resultArray.push(collection[i]);
+        }
+    }
+    // Return the array with the matching results. If no results are found, return an empty array.
+    return resultArray;
+    
+}

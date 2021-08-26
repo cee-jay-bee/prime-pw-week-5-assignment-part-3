@@ -8,10 +8,10 @@ let collection = [];
 const addToCollection = (title, artist, yearPublished, tracks) => {
     // Create a new object having the above properties
     let newObject = {
-        title,
-        artist,
-        yearPublished,
-        tracks
+        title: title,
+        artist: artist,
+        yearPublished: yearPublished,
+        tracks: tracks
     }
     // Add the new object to the end of the collection array
     collection.push(newObject);
@@ -41,7 +41,7 @@ const showCollection = array => {
     console.log(array.length);
     // Loop over the array and console.log each album's information formatted like: TITLE by ARTIST, published in YEAR.
     for (let i = 0; i < array.length; i++){
-        console.log(`${array[i].title} by ${array[i].artist}, published in ${array[i].yearPublished}`);
+        console.log(`${array[i].title} by ${array[i].artist}, published in ${array[i].yearPublished}:`);
         for (let j = 0; j < array[i].tracks.length; j++){
             console.log(`${j+1}. ${array[i].tracks[j].name}: ${array[i].tracks[j].duration}`);
         }
@@ -84,14 +84,14 @@ const search = (object = {}) => {
     for (let i = 0; i < collection.length; i++){
         for (let j = 0; j < collection[i].tracks.length; j++){
             if (object.artist === collection[i].artist && object.year === collection[i].yearPublished && object.trackName === collection[i].tracks[j].name){
-                returnedArray.push([collection[i].artist, collection[i].title, collection[i].tracks[j].name]);
+                returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks[j].name]);
             }
         }
     } return returnedArray;
 }
 
 console.log(search({artist: 'Bruno Mars', year: 2016, trackName: '24K Magic'}));
-console.log(search({artist: 'Bruno Mars', year: 2015}));
+console.log(search({artist: 'Bruno Mars', year: 2012}));
 console.log(search());
 console.log(search({}));
 

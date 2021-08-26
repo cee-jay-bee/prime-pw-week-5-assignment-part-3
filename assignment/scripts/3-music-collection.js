@@ -30,3 +30,16 @@ console.log(addToCollection('Dig Your Roots', 'Florida-Georgia Line', '2016'));
 
 // After all are added, console.log the collection array.
 console.log(collection);
+
+// Add a function named showCollection. This function should:
+// Take in an array parameter. (This allows it to be reused to show any collection, like the results from the find or search.)
+const showCollection = array => {
+    // Console.log the number of items in the array.
+    console.log(array.length);
+    // Loop over the array and console.log each album's information formatted like: TITLE by ARTIST, published in YEAR.
+    for (let i = 0; i < array.length; i++){
+        console.log(`${array[i].title} by ${array[i].artist}, published in ${array[i].yearPublished}`);
+    }
+}
+// Test the showCollection function.
+showCollection(collection);

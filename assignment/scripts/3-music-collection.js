@@ -81,21 +81,75 @@ const search = (object = {}) => {
     // If there is no search object or an empty search object provided as input, then return all albums in the collection.
     if (Object.keys(object).length === 0){
         return collection;
-    }
-    // Return a new array of all items in the collection matching all of the search criteria.
-    // If no results are found, return an empty array.
-    for (let i = 0; i < collection.length; i++){
-        if (object.artist === collection[i].artist && object.year === collection[i].yearPublished){
-            for (let j = 0; j < collection[i].tracks.length; j++){
-                if (object.trackName === collection[i].tracks[j].name){
-                returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks[j].name]);
+    } else if(object.artist && object.year && object.trackName){
+        for (let i = 0; i < collection.length; i++){
+            if (object.artist === collection[i].artist && object.year === collection[i].yearPublished){
+                for (let j = 0; j < collection[i].tracks.length; j++){
+                    if (object.trackName === collection[i].tracks[j].name){
+                    returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks[j].name]);
+                    }
                 }
             }
         }
-    } return returnedArray;
+    } else if (object.artist && object.year && !object.trackName) {
+        for (let i = 0; i < collection.length; i++){
+            if (object.artist === collection[i].artist && object.year === collection[i].yearPublished){
+                    returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks]);
+            }
+        }
+    } else if (object.artist && !object.year && object.trackName) {
+        for (let i = 0; i < collection.length; i++){
+            if (object.artist === collection[i].artist){
+                for (let j = 0; j < collection[i].tracks.length; j++){
+                    if (object.trackName === collection[i].tracks[j].name){
+                    returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks[j].name]);
+                    }
+                }
+            }
+        }
+    } else if (!object.artist && object.year && object.trackName) {
+        for (let i = 0; i < collection.length; i++){
+            if (object.year === collection[i].yearPublished){
+                for (let j = 0; j < collection[i].tracks.length; j++){
+                    if (object.trackName === collection[i].tracks[j].name){
+                    returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks[j].name]);
+                    }
+                }
+            }
+        }
+    } else if (object.artist && !object.year && !object.trackName) {
+        for (let i = 0; i < collection.length; i++){
+            if (object.artist === collection[i].artist){
+                returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks]);
+            }
+        }
+    } else if (!object.artist && object.year && !object.trackName) {
+        for (let i = 0; i < collection.length; i++){
+            if (object.year === collection[i].yearPublished){
+                returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks]);
+            }
+        }
+    } else if(!object.artist && !object.year && object.trackName){
+        for (let i = 0; i < collection.length; i++){
+                for (let j = 0; j < collection[i].tracks.length; j++){
+                    if (object.trackName === collection[i].tracks[j].name){
+                    returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks[j].name]);
+                    }
+                }
+            }
+        }
+    // Return a new array of all items in the collection matching all of the search criteria.
+    // If no results are found, return an empty array.
+    return returnedArray;
 }
 
 console.log('Search for "Florida-Georgia Line, 2016, Smooth":', search({artist: 'Florida-Georgia Line', year: 2016, trackName: 'Smooth'}));
+console.log('Search for "Bruno Mars, 2016":', search({artist: 'Bruno Mars', year: 2016}));
+console.log('Search for "Florida-Georgia Line, Angel":', search({artist: 'Florida-Georgia Line', trackName: 'Angel'}));
+console.log('Search for "2010, Count On Me":', search({year: 2010, trackName: 'Count On Me'}));
+console.log('Search for "Florida-Georgia Line:', search({artist: 'Florida-Georgia Line'}));
+console.log('Search for "2016":', search({year: 2016}));
+console.log('Search for "Perm":', search({trackName: 'Perm'}));
 console.log('Empty Search:', search());
 console.log('Empty Object Search:', search({}));
 

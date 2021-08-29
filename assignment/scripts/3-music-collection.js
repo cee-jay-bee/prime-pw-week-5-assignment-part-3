@@ -81,6 +81,8 @@ const search = (object = {}) => {
     // If there is no search object or an empty search object provided as input, then return all albums in the collection.
     if (Object.keys(object).length === 0){
         return collection;
+    // Return a new array of all items in the collection matching all of the provided search criteria.
+    // return match if all three are defined
     } else if(object.artist && object.year && object.trackName){
         for (let i = 0; i < collection.length; i++){
             if (object.artist === collection[i].artist && object.year === collection[i].yearPublished){
@@ -91,12 +93,14 @@ const search = (object = {}) => {
                 }
             }
         }
+    // return match if only artist and year are defined
     } else if (object.artist && object.year && !object.trackName) {
         for (let i = 0; i < collection.length; i++){
             if (object.artist === collection[i].artist && object.year === collection[i].yearPublished){
                     returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks]);
             }
         }
+    // return match if only artist and track are defined
     } else if (object.artist && !object.year && object.trackName) {
         for (let i = 0; i < collection.length; i++){
             if (object.artist === collection[i].artist){
@@ -107,6 +111,7 @@ const search = (object = {}) => {
                 }
             }
         }
+    // return match if only year and track are defined
     } else if (!object.artist && object.year && object.trackName) {
         for (let i = 0; i < collection.length; i++){
             if (object.year === collection[i].yearPublished){
@@ -117,19 +122,22 @@ const search = (object = {}) => {
                 }
             }
         }
+    // return match if only artist is defined
     } else if (object.artist && !object.year && !object.trackName) {
         for (let i = 0; i < collection.length; i++){
             if (object.artist === collection[i].artist){
                 returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks]);
             }
         }
+    // return match if only year is defined
     } else if (!object.artist && object.year && !object.trackName) {
         for (let i = 0; i < collection.length; i++){
             if (object.year === collection[i].yearPublished){
                 returnedArray.push([collection[i].artist, collection[i].title, collection[i].yearPublished, collection[i].tracks]);
             }
         }
-    } else if(!object.artist && !object.year && object.trackName){
+    // return match if only track is defined
+    } else if (!object.artist && !object.year && object.trackName){
         for (let i = 0; i < collection.length; i++){
                 for (let j = 0; j < collection[i].tracks.length; j++){
                     if (object.trackName === collection[i].tracks[j].name){
@@ -138,8 +146,6 @@ const search = (object = {}) => {
                 }
             }
         }
-    // Return a new array of all items in the collection matching all of the search criteria.
-    // If no results are found, return an empty array.
     return returnedArray;
 }
 
@@ -150,11 +156,6 @@ console.log('Search for "2010, Count On Me":', search({year: 2010, trackName: 'C
 console.log('Search for "Florida-Georgia Line:', search({artist: 'Florida-Georgia Line'}));
 console.log('Search for "2016":', search({year: 2016}));
 console.log('Search for "Perm":', search({trackName: 'Perm'}));
+console.log('Search for "Charlie Daniels Band, 2016":', search({artist: 'Charlie Daniels Band', year: 2016}));
 console.log('Empty Search:', search());
 console.log('Empty Object Search:', search({}));
-
-
-
-
-
-
